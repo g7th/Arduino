@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<meta charset="windows-1252">
+<title>7th Button Library</title>
+<style type="text/css">
+<!--
+* {
+  font-family: Vrinda,Helvetica,sans-serif;
+}
+table {
+  border-spacing: 5px;
+}
+samp {
+  font-family: 'Lucida Console','Courier New',monospace;
+  white-space: nowrap;
+  color: darkGreen;
+}
+strong {
+  font-size: x-large;
+}
+th {
+  padding-top: 25px;
+}
+td, th {
+  padding-right: 5px;
+  vertical-align: top;
+  text-align: left;
+}
+tr th {
+  padding-left: 3%;
+}
+tr td {
+  padding-left: 6%;
+  padding-right: 6%;
+}
+tr td:first-child i {
+  padding:35px;
+}
+u {
+  text-decoration: underline;
+  color: darkGreen;
+}
+-->
+</style>
+<body>
+<table>
+  <colgroup>
+    <col style="width:24%">
+    <col style="width:76%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th colspan="2">
+      <img src="logo.png" alt="7th" style="float:left;">
+      <div style="margin-top:-2px;margin-left:90px;">
+      <span style="font-size:xx-large;">Button Library</span><br>including Timer and LED utilities…</div></th>
+    </tr>
+    <tr><td colspan="2" style="outline:1px solid black;"></td></tr>
+  </thead>
+  <tfoot>
+    <tr><td colspan="2" style="padding-bottom:15px;"></td></tr>
+  </tfoot>
+  <tbody>
+    <tr><th colspan="2"><strong>Button</strong></th></tr>
+    <tr><td><samp>Button( pin, HIGH )</samp></td><td>creates a button with the arguments pin number and button state (means
+    button is active on <samp>HIGH</samp> or <samp>LOW</samp>).<br>
+    <samp>Button </samp><u><samp>button</samp></u><samp> = Button( pin, HIGH );</samp><br>
+    There are two more optional arguments isClicked (is optional false) and button mode – see <samp>pinMode( button, INPUT )</samp>.<br>
+    use as <samp>Button button = Button( pin, HIGH, </samp>
+    <samp>digitalRead( switchedPin ) );</samp></td></tr>
+    <tr><td colspan="2"><i>push button: the button mirrors pushes and releases immediately</i></td></tr>
+    <tr><td><samp>isPressed( </samp><u><samp>button</samp></u><samp> )</samp></td><td>returns <samp>true</samp> while button is pressed</td></tr>
+    <tr><td><samp>pressed( button )</samp></td><td>returns <samp>HIGH</samp> while button is pressed<br>
+    use as <samp>digitalWrite( ledPin, pressed( button ) );</samp><br>
+    </td></tr>
+    <tr><td><samp>pushes( button )</samp></td><td>returns the count of button pushes<br>
+    reset the counter with<br>
+    <samp>pushes( button, newCounterValue );</samp>
+    </td></tr>
+    <tr><td><samp>pressTime0( button )</samp></td><td>returns the time the button was pressed – returns 0 immediately when the button
+    is released</td></tr>
+    <tr><td><samp>pressTime( button )</samp></td><td>returns the time the button was pressed – holds and returns the last (highest)
+    value of time when the button is released</td></tr>
+    <tr><td><samp>press_tm</samp></td><td>the two functions above give their time results in hundredth of a second – You get
+    the milliseconds with
+    <samp>button.press_tm</samp></td></tr>
+    <tr><td colspan="2"><i>toggle button: the button switches between on and off state</i></td></tr>
+    <tr><td><samp>isClicked( button )</samp></td><td>returns <samp>true</samp> if button is in <i>on</i> state</td></tr>
+    <tr><td><samp>isDoubleClicked( button, </samp>
+    <samp>speed )</samp></td><td>returns <samp>true</samp> if two following presses happend in
+    a time shorter or equal to speed – speed value in hundredth of a second</td></tr>
+    <tr><td><samp>clicked( button )</samp></td><td>returns <samp>HIGH</samp> if button is in <i>on</i> state<br>
+    use as <samp>digitalWrite( ledPin, clicked( button ) );</samp></td></tr>
+    <tr><td><samp>clicks( button )</samp></td><td>returns the count of button switches from <i>off</i> to <i>on</i> state<br>
+    reset the counter with<br>
+    <samp>clicks( button, newCounterValue );</samp></td></tr>
+    <tr><td><samp>onTime( button )</samp></td><td>returns the time while button was in <i>on</i> state</td></tr>
+    <tr><td><samp>offTime( button )</samp></td><td>returns the time while button was in <i>off</i> state</td></tr>
+    <tr><td><samp>on_tm</samp></td><td>the two functions above give their time results in hundredth of a second – You get
+    the milliseconds with
+    <samp>button.on_tm</samp></td></tr>
+    <tr><td><samp>off_tm</samp></td><td>the two functions above give the time value in hundredth of a second – You get
+    the milliseconds with
+    <samp>button.off_tm</samp></td></tr>
+    <tr><td colspan="2" style="padding-bottom:15px;"></td></tr>
+    <tr><td><samp>pinMode( button, INPUT )</samp></td><td>changes the pin mode for the button (<samp>INPUT</samp>, <samp>INPUT_PULLUP</samp>)<br>
+    You will rarely need this – <samp>Button( pin, HIGH )</samp> will set the appropriate mode depending on the button state – <samp>INPUT</samp>
+    for <samp>HIGH</samp> or <samp>INPUT_PULLUP</samp> for <samp>LOW</samp><br>
+    or <samp>Button( pin, HIGH, false, INPUT )</samp> as well<br>
+    never use <samp>pinMode( pin, INPUT )</samp> to change a buttons mode</td></tr>
+    <tr><th colspan="2"><strong>Timer</strong></th></tr>
+    <tr><td><samp>useTimer1( true )</samp></td><td>switch from timer0 to timer1 with argument <samp>true</samp> and back with <samp>false</samp><br>
+    <samp>useTimer1();</samp> implies <samp>true</samp> as argument</td></tr>
+    <tr><td colspan="2"><i>the following functions are only available with timer1 on</i></td></tr>
+    <tr><td><samp>hm()</samp></td><td>returns a time string in the form hh:mm</td></tr>
+    <tr><td><samp>hms()</samp></td><td>returns a time string in the form hh:mm:ss<br>
+    use <samp>hms( h, m, s );</samp> to set the current time</td></tr>
+    <tr><td><samp>hmsToSeconds()</samp></td><td>transforms the time into seconds</td></tr>
+    <tr><td><samp>hours</samp></td><td>hours</td></tr>
+    <tr><td><samp>minutes</samp></td><td>minutes</td></tr>
+    <tr><td><samp>seconds</samp></td><td>seconds</td></tr>
+    <tr><th colspan="2"><strong>LED</strong></th></tr>
+    <tr><td><samp>togglePin( pin, speed )</samp></td><td>intentionally not implemented by interrupt is this function useful with a LED
+    to recognize issues in a program, when the blinking is changing its frequency or stopping totally – speed value in hundredth of a second</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <colgroup>
+    <col style="width:100%">
+  </colgroup>
+  <thead>
+  </thead>
+  <tfoot>
+    <tr><td style="padding-bottom:15px;"></td></tr>
+  </tfoot>
+  <tbody>
+  <tr><th><strong>Installing the library</strong></th></tr>
+  <tr><td><i>the following has to be done only once</i></td></tr>
+  <tr><td>Locate Your Arduino folder by pressing Ctrl-K (Strg-K) in Your Arduino IDE. The filepath of Your latest project will be opened.
+  The filepath will be like <samp>[user]/Arduino/Sketchbook/[project]</samp>.<br>
+  Go up in the <samp>Arduino</samp> folder. Then find Your <samp>libraries</samp> folder (most likely in <samp>ArduinoXXX</samp> folder).
+  Copy the <samp>G7th</samp> folder to <samp>libraries</samp>.
+  </td></tr>
+  </tbody>
+</table>
+
+<address style="font-size:medium;">
+Written by Otmar Klenk<br>
+7th Stone Software GmbH
+</address>
+</body>
+</html>

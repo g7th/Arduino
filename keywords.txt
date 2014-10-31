@@ -1,0 +1,43 @@
+#######################################
+# Syntax Coloring Map G7th
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Button	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+isPressed	KEYWORD2
+isClicked	KEYWORD2
+isDoubleClicked	KEYWORD2
+pressed	KEYWORD2
+clicked	KEYWORD2
+pushes	KEYWORD2
+clicks	KEYWORD2
+pressTime0	KEYWORD2
+pressTime	KEYWORD2
+onTime	KEYWORD2
+offTime	KEYWORD2
+pinMode	KEYWORD2
+togglePin	KEYWORD2
+useTimer1	KEYWORD2
+hm	KEYWORD2
+hms	KEYWORD2
+hmsToSeconds	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+press_tm	LITERAL1
+on_tm	LITERAL1
+off_tm	LITERAL1
+
+hours	LITERAL1
+minutes	LITERAL1
+seconds	LITERAL1
