@@ -34,7 +34,7 @@ volatile int msecs = 0;
 ISR( TIMER1_COMPB_vect ) {
   unsigned long r = timer1_millis;
   r++; timer1_millis = r;
-  if( (msecs++) >= 1000 ) {
+  if( (msecs++) >= 999 ) {
     msecs = 0;
     if( (seconds++) >= 59 ) {
       seconds = 0;
